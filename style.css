@@ -1,0 +1,51 @@
+#heading {
+    font-family: Roboto, sans-serif;
+    text-align: center;
+}
+
+body {
+    background-color: #e7e0e6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#container {
+    display: flex;
+    justify-content: space-between;
+    gap: 0;
+}
+
+#sideBar {
+    width: 200px;
+    background-color: aqua;
+    padding: 16px;
+    flex-shrink: 0;
+}
+
+#interface {
+    width: 600px;
+    height: 600px;
+    background-color: aquamarine;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#canvas {
+    width: 400px;
+    height: 400px;
+    background-color:blueviolet;
+    text-align: center;
+}
+
+#pixel {
+    width: 10px;
+    height: 10px;
+    background-color:rgb(226, 43, 43);
+}
+
+#footer {
+    font-family: Roboto, sans-serif;
+    text-align: center;
+}
