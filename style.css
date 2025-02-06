@@ -21,11 +21,21 @@ body {
     background-color: aqua;
     padding: 16px;
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#sideBar > button {
+    /* display: block; Make block display instead of in-line */
+    padding: 10px;
 }
 
 #interface {
-    width: 600px;
-    height: 600px;
+    width: 700px;
+    height: 700px;
     background-color: aquamarine;
     display: flex;
     justify-content: center;
@@ -33,16 +43,18 @@ body {
 }
 
 #canvas {
-    width: 400px;
-    height: 400px;
+    width: 600px;
+    height: 600px;
     background-color:blueviolet;
-    text-align: center;
+    flex-shrink: 0;
+    display: flex;
+    flex-wrap: wrap; /* Make pixel wrap inside the canvas */
+    justify-content: center;
 }
 
-#pixel {
-    width: 10px;
-    height: 10px;
-    background-color:rgb(226, 43, 43);
+.square {
+    margin: 0px auto;
+    background-color:rgb(43, 226, 122);
 }
 
 #footer {
