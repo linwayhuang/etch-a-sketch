@@ -12,12 +12,12 @@ body {
 
 #container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     gap: 0;
 }
 
 #sideBar {
-    width: 200px;
+    width: 250px;
     background-color: aqua;
     padding: 16px;
     flex-shrink: 0;
@@ -25,17 +25,19 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 20px;
 
 }
 
 #sideBar > button {
     /* display: block; Make block display instead of in-line */
+    width: 150px;
     padding: 10px;
 }
 
 #interface {
-    width: 700px;
-    height: 700px;
+    width: 800px;
+    height: 800px;
     background-color: aquamarine;
     display: flex;
     justify-content: center;
@@ -43,9 +45,9 @@ body {
 }
 
 #canvas {
-    width: 600px;
-    height: 600px;
-    background-color:blueviolet;
+    width: 700px;
+    height: 700px;
+    background-color:white;
     flex-shrink: 0;
     display: flex;
     flex-wrap: wrap; /* Make pixel wrap inside the canvas */
