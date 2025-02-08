@@ -3,9 +3,12 @@ const container = document.querySelector("#container");
 const sideBar = document.querySelector("#sideBar");
 const slider = document.querySelector("#slider");
 const gridSize = document.querySelector("#gridSize");
+const colorChoice = document.querySelector("#colorPicker");
 const canvas = document.querySelector("#canvas");
 
 //Create elements, attach to other elements, and set variables
+gridSize.textContent = `${slider.value} x ${slider.value}`;
+
 //Remember that if you try to use querySelectorAll to select the elements, the return value is NOT an array.
 //It looks like an array but it's actually a node list.
 let buttonBrush = document.createElement("button");
@@ -23,62 +26,58 @@ buttonShade.id = "buttonShade";
 buttonShade.textContent = ("Shade Mode");
 sideBar.appendChild(buttonShade);
 
-gridSize.textContent = `${slider.value} x ${slider.value}`;
-
-//You can use the below method to select the elements based on class. This class can even be created inside a loop.
-const pixels = document.querySelectorAll(".square");
-
 //Start
-
 slider.addEventListener("input", (event) => {
     gridSize.textContent = event.target.value;
     //Remove all pixels
     while (canvas.hasChildNodes()) {
         canvas.removeChild(canvas.firstChild);
     }
-    //Recreate pixel according to the slider
+    //For some reasons, when you have two variables (one for row and one for column) in the canvasSize function, "canvasSize()" doesn't work. I had to put in an argument to make it work
+    //If you have one variable in the canvasSize function, "canvasSize()" work
     canvasSize(slider.value);
-});
-
-//For some reasons, when you have two variables (one for row and one for column) in the canvasSize function, "canvasSize()" doesn't work. I had to put in an argument to make it work
-//If you have one variable in the canvasSize function, "canvasSize()" work
-canvasSize(16);
-
-sideBar.addEventListener("click", (event) => {
-    let target = event.target;
-
-    switch(target.id) {
-        case "buttonBrush":
-            alert("Brush Mode");
-            pixels.forEach(pixel => {
-                pixel.addEventListener("mouseenter", () => {
-                    pixel.style.backgroundColor = "rgb(155, 102, 102)"; //if you put the rgb values in back bracket then it doesn't work
-                });
-            });
-            break;
-        case "buttonRainbow":
-            alert("Rainbow Mode");
-            pixels.forEach(pixel => {
-                pixel.addEventListener("mouseenter", () => {
-                    pixel.style.backgroundColor = randomColor();
-                });
-            });
-            break;
-        case "buttonShade":
-            alert("Shade Mode");
-            pixels.forEach(pixel => {
-                let i = 0.1;
-                if (i < 1) {
+    //You can use the below method to select the elements based on class. This class can even be created inside a loop.
+    const pixels = document.querySelectorAll(".square");
+    
+    sideBar.addEventListener("click", (event) => {
+        let target = event.target;
+    
+        switch(target.id) {
+            case "buttonBrush":
+                alert("Brush Mode");
+                pixels.forEach(pixel => {
                     pixel.addEventListener("mouseenter", () => {
-                        pixel.style.backgroundColor = "black";
-                        pixel.style.opacity = `${i}`;
-                        i += 0.1;
+                        pixel.style.backgroundColor = colorChoice.value; //if you put the rgb values in back bracket then it doesn't work
                     });
-                }
-            });
-            break;
-    }
+                });
+                break;
+            case "buttonRainbow":
+                alert("Rainbow Mode");
+                pixels.forEach(pixel => {
+                    pixel.addEventListener("mouseenter", () => {
+                        pixel.style.backgroundColor = randomColor();
+                    });
+                });
+                break;
+            case "buttonShade":
+                alert("Shade Mode");
+                pixels.forEach(pixel => {
+                    let i = 0.1;
+                    if (i < 1) {
+                        pixel.addEventListener("mouseenter", () => {
+                            pixel.style.backgroundColor = "black";
+                            pixel.style.opacity = `${i}`;
+                            i += 0.1;
+                        });
+                    }
+                });
+                break;
+        }
+    });
 });
+
+
+
 
 //Functions
 //You can't create divs by copying and pasting the same code block, but you can create multiples of them
@@ -101,6 +100,7 @@ function randomColor () {
 
 //add borders: https://bscottnz.github.io/esketch/
 //https://aroan-v.github.io/Etch-A-Sketch/
+//code the program so canvasSize() can also run when you first load the site
 //add addjustable grid length based on adjusted canvas size
 //make the grid change color only when the left button is pressed. Also make the hover effect on
 //each grid whereever the mouse enter but it won't do anything until the click
