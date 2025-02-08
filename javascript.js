@@ -29,13 +29,20 @@ gridSize.textContent = `${slider.value} x ${slider.value}`;
 const pixels = document.querySelectorAll(".square");
 
 //Start
+
 slider.addEventListener("input", (event) => {
     gridSize.textContent = event.target.value;
+    //Remove all pixels
+    while (canvas.hasChildNodes()) {
+        canvas.removeChild(canvas.firstChild);
+    }
+    //Recreate pixel according to the slider
+    canvasSize(slider.value);
 });
 
 //For some reasons, when you have two variables (one for row and one for column) in the canvasSize function, "canvasSize()" doesn't work. I had to put in an argument to make it work
 //If you have one variable in the canvasSize function, "canvasSize()" work
-canvasSize(slider.value);
+canvasSize(16);
 
 sideBar.addEventListener("click", (event) => {
     let target = event.target;
@@ -76,7 +83,7 @@ sideBar.addEventListener("click", (event) => {
 //Functions
 //You can't create divs by copying and pasting the same code block, but you can create multiples of them
 //by using the loop. You can access the divs from outside of the loop by its class/id
-function canvasSize (size = 16) {
+function canvasSize (size = 4) {
     for (i = 0; i < (size * size); i++) {
         let square = document.createElement("div");
         square.classList.add("square");
