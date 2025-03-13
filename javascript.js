@@ -30,9 +30,7 @@ sideBar.appendChild(buttonShade);
 slider.addEventListener("input", (event) => {
     gridSize.textContent = event.target.value;
     //Remove all pixels
-    while (canvas.hasChildNodes()) {
-        canvas.removeChild(canvas.firstChild);
-    }
+    canvas.innerHTML = "";
     //For some reasons, when you have two variables (one for row and one for column) in the canvasSize function, "canvasSize()" doesn't work. I had to put in an argument to make it work
     //If you have one variable in the canvasSize function, "canvasSize()" work
     canvasSize(slider.value);
